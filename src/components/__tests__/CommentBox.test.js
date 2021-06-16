@@ -1,14 +1,22 @@
 import React  from 'react';
 import { mount } from 'enzyme';
 import CommentBox from 'components/CommentBox';
-
+// 47 - Add Redux functionality
+import Root from 'Root';
 // 31, 33 - Full DOM example for CommentBox
 //          Instructor would go with Shallow IRL
 
 // 34
 let wrapped;
 beforeEach(() => {
-    wrapped = mount(<CommentBox />);
+    // 47 - Wrap CommentBox in Root component to give access to Redux
+    // use of props.children in Root allows Root to wrap *any* component
+    // Now tests pass!
+    wrapped = mount(
+    <Root>
+        <CommentBox />
+    </Root>
+    );
 });
 
 // 34 - clean up components after every single task is executed

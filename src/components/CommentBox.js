@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+// 45 - this is going to grab all the actions out of our actions index, not just file.
+import * as actions from 'actions';
 
 class CommentBox extends Component {
     state = { comment: ''};
@@ -15,7 +18,9 @@ class CommentBox extends Component {
         // prevents page from submitting and attempting reload
         event.preventDefault();
 
-        // TODO: Call action creator, save user's comment
+        // 45 - Call action creator, save user's comment
+        // Addin this breaks tests!
+        this.props.saveComment(this.state.comment);
 
         // Empty out text area
         this.setState({ comment: '' });
@@ -43,4 +48,9 @@ class CommentBox extends Component {
     }
 }
 
-export default CommentBox;
+// 45 - Wire to Redux
+//      Adding Redux breaks tests at this point!
+export default connect(
+    null,
+    actions
+)(CommentBox);
