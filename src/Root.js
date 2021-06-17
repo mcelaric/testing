@@ -14,10 +14,13 @@ import reducers from 'reducers';
 // create our Redux store at the same time, with empty state
 // props.children allows us to take this component we just created
 // and use it to wrap other components.
-export default (props) => {
+
+// 53 - Add prop of initialState for testing CommentList
+// Set to empty state for so tests for App and CommentBox don't blow up
+export default ({ children, initialState = {} }) => {    
     return (
-        <Provider store={createStore(reducers, {})}>
-            {props.children}
+        <Provider store={createStore(reducers, initialState)}>
+            {children}
         </Provider>
     );
 }
