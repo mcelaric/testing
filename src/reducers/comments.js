@@ -1,4 +1,4 @@
-import { SAVE_COMMENT } from "actions/types";
+import { SAVE_COMMENT, FETCH_COMMENTS } from "actions/types";
 
 //42 - setup
 export default function(state = [], action) {
@@ -7,7 +7,14 @@ export default function(state = [], action) {
         case SAVE_COMMENT:
             // 44 - add new comment to store/state
             return [...state, action.payload];
-        default:
+        
+        // 57 - Add fetch comments
+        // Return the comments list from the API call 
+        case FETCH_COMMENTS:
+            const comments = action.payload.data.map(comment => comment.name);
+            return [...state, ...comments];
+
+         default:
             return state;
     }
 }

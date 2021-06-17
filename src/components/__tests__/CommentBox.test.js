@@ -28,13 +28,13 @@ afterEach(() => {
 // 34 - Enzyme is going to take our component instance.
 // It's going to attempt to render it into that fake DOM that is created by JSDOM 
 // and then it returns this object right here that we usually refer to as 'wrapped.
-it('has a textarea and a button', () => {
+it('has a textarea and has 2 buttons', () => {
     // commented out in 34 when beforeEach added
     // const wrapped = mount(<CommentBox />);  
 
     // Look through the component that was created, and attempt to find a textarea and button elements
     expect(wrapped.find('textarea').length).toEqual(1);
-    expect(wrapped.find('button').length).toEqual(1);
+    expect(wrapped.find('button').length).toEqual(2);
 })
 
 // 41 - common code between following tests

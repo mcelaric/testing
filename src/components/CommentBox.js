@@ -26,8 +26,10 @@ class CommentBox extends Component {
         this.setState({ comment: '' });
     }
 
+    // 57 - Add fetch comments button with own functionality outside of form
     render(){
         return(
+            <div>
             <form onSubmit={this.handleSubmit}>
                 <h4>Add A Comment</h4>
                 {/* REMEMBER BASIC REACT:
@@ -44,6 +46,24 @@ class CommentBox extends Component {
                     <button>Submit Comment</button>
                 </div>
             </form>
+             {/* REMEMBER BASIC REACT:
+                    We are not putting a set of parentheses after this.props.fetchComments.
+                    because we want to give the button a callback that 
+                    it can call at some point in the future.
+                    So we're just giving a reference to the fetchComments function.
+                    If we put the () at the end, the function will be called when the component is
+                    renedered, no when the button is clicked.  WE DON'T WANT THAT!!!
+
+                    SECONDLY... (oy) When we bind an action creator to a component through the connect(), 
+                    it gets added to the props object for the component itself.
+                    So that's why we did this this.props.fetchComments.
+
+                    61 - Give this button a class name for integration testing, so we can look 
+                    for this specific button and simulate clicking it.
+            */}
+            <button className="fetch-comments" onClick={this.props.fetchComments}>Fetch Comments</button>
+            </div>
+
         );
     }
 }

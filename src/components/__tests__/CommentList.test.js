@@ -9,7 +9,7 @@ let wrapped;
 beforeEach(() => {
     // 53 - 'state' prop for testing
     const initialState = {
-        comments: ['comment 1', 'comment 2']
+        comments: ['Comment 1', 'Comment 2']
     };
     
     wrapped = mount(
@@ -40,6 +40,12 @@ it('creates one LI per comment', () => {
 // render() returns a CheerioWrapper
 // Cheerio is a library very similar to jQuery.
 // It allows us to kind of crawl or run queries or essentially selectors over snippets of HTML.
-// it('shows the text for each comment', () => {
-    
-// });
+it('shows the text for each comment', () => {
+    //console.log(wrapped.render().text());
+
+    // NOTE:  We cannot test for multiple toContains() inside of a single expectation!!!
+    // Two separate toContains() or two separate expectations.
+    // One's going to specifically look for 'Comment 1', the second specifically looking for 'Comment 1'
+    expect(wrapped.render().text()).toContain('Comment 1');
+    expect(wrapped.render().text()).toContain('Comment 2');
+});

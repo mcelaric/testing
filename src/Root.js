@@ -6,7 +6,9 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+// 55 - add applyMiddlware and redux promise
+import { createStore , applyMiddleware} from 'redux';
+import reduxPromise from 'redux-promise';
 import reducers from 'reducers';
 
 // 'Export' the Redux functionality
@@ -18,8 +20,11 @@ import reducers from 'reducers';
 // 53 - Add prop of initialState for testing CommentList
 // Set to empty state for so tests for App and CommentBox don't blow up
 export default ({ children, initialState = {} }) => {    
+    // 55 - clean up store creation to add applyMiddleware arg
+    const store = createStore(reducers, initialState, applyMiddleware(reduxPromise));
+    
     return (
-        <Provider store={createStore(reducers, initialState)}>
+        <Provider store={store}>
             {children}
         </Provider>
     );
