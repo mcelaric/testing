@@ -1,3 +1,4 @@
+// 51 - Full code, not just scaffolding
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
