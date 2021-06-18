@@ -1,4 +1,3 @@
-// 42
 import { combineReducers } from 'redux';
 import commentsReducer from 'reducers/comments';
 
